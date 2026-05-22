@@ -1,6 +1,6 @@
-# 用户注册激活系统
+# Computing-Network-Assignment15
 
-这是一个简单的PHP用户注册系统，包含邮箱验证功能。
+这是一个简单的用户注册系统，包含邮箱验证功能。
 
 ## 功能特性
 
@@ -13,55 +13,35 @@
 
 ```
 .
-├── database.sql      # 数据库初始化脚本
-├── config.php        # 数据库配置文件
-├── register.html     # 注册页面
-├── register.php      # 注册处理脚本
-├── verify.php        # 激活验证脚本
-└── index.php         # 入口文件
+├── app.py            # Flask 主应用
+├── database.sql      # 数据库初始化脚本(PHP版)
+├── config.php        # 数据库配置(PHP版)
+├── register.html     # 注册页面(PHP版)
+├── register.php      # 注册处理(PHP版)
+├── verify.php        # 激活验证(PHP版)
+└── index.php         # 入口文件(PHP版)
 ```
 
-## 安装部署
-
-### 1. 数据库配置
-
-确保已安装MySQL，执行以下步骤：
+## 使用方法（Python Flask版）
 
 ```bash
-# 使用MySQL命令行或图形化工具执行 database.sql
-mysql -u root -p < database.sql
+pip install flask
+python app.py
 ```
 
-### 2. 修改数据库配置
+访问 http://127.0.0.1:5000
 
-编辑 `config.php`，根据实际情况修改数据库连接信息：
+## 使用方法（PHP版）
 
-```php
-$host = 'localhost';
-$dbname = 'user_system';
-$username = 'root';
-$password = '';
-```
-
-### 3. 部署到Web服务器
-
-将所有文件放到Web服务器目录（如 `htdocs`、`www` 等）。
-
-### 4. 访问系统
-
-在浏览器中访问 `http://127.0.0.1/` 或 `http://localhost/`。
-
-## 使用说明
-
-1. 填写昵称、口令和邮箱进行注册
-2. 系统会显示激活链接（实际项目中会通过SMTP发送邮件）
-3. 点击激活链接验证账户
-4. 若超过1小时未激活，昵称会自动释放
+1. 创建数据库：执行 database.sql
+2. 修改 config.php 数据库配置
+3. 部署到Web服务器
+4. 访问 http://127.0.0.1
 
 ## 激活链接格式
 
 ```
-http://127.0.0.1/verify.php?user=用户名&code=验证码
+http://127.0.0.1:5000/verify?user=用户名&code=验证码
 ```
 
-其中验证码使用 `md5(用户名 + 时间戳)` 生成。
+验证码使用 `md5(用户名 + 时间戳)` 生成。
